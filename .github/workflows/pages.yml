@@ -21,6 +21,7 @@ jobs:
           mkdir _site
           cp index.html robots.txt sitemap.xml LICENSE .nojekyll _site/
           cp -R assets _site/assets
+          cp -R fr _site/fr
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:

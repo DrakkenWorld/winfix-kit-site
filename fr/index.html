@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Des utilitaires PowerShell gratuits et transparents pour diagnostiquer et entretenir Windows.">
+  <meta name="theme-color" content="#0b1020">
+  <link rel="canonical" href="https://drakkenworld.github.io/winfix-kit-site/fr/">
+  <link rel="alternate" hreflang="en" href="https://drakkenworld.github.io/winfix-kit-site/">
+  <link rel="alternate" hreflang="fr" href="https://drakkenworld.github.io/winfix-kit-site/fr/">
+  <link rel="alternate" hreflang="x-default" href="https://drakkenworld.github.io/winfix-kit-site/">
+  <title>WinFix Kit — Utilitaires Windows gratuits</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script defer src="../assets/js/main.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Accueil WinFix Kit">
+      <span class="brand-mark" aria-hidden="true">W</span>
+      <span>WinFix <strong>Kit</strong></span>
+    </a>
+    <nav aria-label="Navigation principale">
+      <a href="#tools">Outils</a>
+      <a href="#principles">Nos principes</a>
+      <a href="https://github.com/DrakkenWorld" target="_blank" rel="noreferrer">GitHub ↗</a>
+      <span class="language-switch" aria-label="Langue"><a href="../" lang="en" hreflang="en">English</a><span aria-hidden="true">/</span><span lang="fr" aria-current="page">Français</span></span>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span class="status-dot"></span> UTILITAIRES WINDOWS GRATUITS · OPEN SOURCE</div>
+      <h1>Réparer. Diagnostiquer.<br><span>Comprendre Windows.</span></h1>
+      <p>Des outils pratiques et transparents pour comprendre, dépanner et entretenir Windows, sans réglages obscurs ni télémétrie cachée.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#tools">Découvrir les outils <span aria-hidden="true">↓</span></a>
+        <a class="button button-secondary" href="https://github.com/DrakkenWorld" target="_blank" rel="noreferrer">Voir sur GitHub ↗</a>
+      </div>
+      <div class="hero-note"><span aria-hidden="true">✓</span> Open source <span aria-hidden="true">✓</span> Actions documentées <span aria-hidden="true">✓</span> Vous gardez la main</div>
+    </section>
+
+    <section class="section" id="tools">
+      <div class="section-heading">
+        <div><div class="eyebrow">LA BOÎTE À OUTILS</div><h2>Des outils simples. Des réponses claires.</h2></div>
+        <p>Chaque outil présente son objectif, ses prérequis, son mode d’emploi et son code source.</p>
+      </div>
+      <div class="tool-grid">
+        <article class="tool-card featured">
+          <div class="card-top"><span class="tool-icon">▤</span><span class="pill pill-ready">v1.1.0</span></div>
+          <h3>Analyseur d’espace disque</h3>
+          <p>Repérez les fichiers et dossiers volumineux et générez des rapports HTML et CSV sur votre ordinateur. Le script ne supprime rien.</p>
+          <div class="tag-row"><span>PowerShell</span><span>Lecture seule</span><span>HTML / CSV</span></div>
+          <a class="button button-primary" href="https://github.com/DrakkenWorld/winfix-disk-space-analyzer/releases/latest">Télécharger la version stable ↗</a>
+          <p>Windows PowerShell 5.1 ou PowerShell 7. Aucun droit administrateur nécessaire pour vos dossiers personnels. Consultez le code avant l’exécution.</p>
+          <p class="usage-label">Lancer l’analyse en français :</p>
+          <pre class="usage"><code>.\WinFix-DiskSpaceAnalyzer.ps1 -Path "$env:USERPROFILE\Documents" -Language fr</code></pre>
+          <a class="text-link" href="https://github.com/DrakkenWorld/winfix-disk-space-analyzer" target="_blank" rel="noreferrer">Voir l’outil sur GitHub ↗</a>
+        </article>
+        <article class="tool-card">
+          <div class="card-top"><span class="tool-icon">▦</span><span class="pill">Prévu</span></div>
+          <h3>Rapport de santé du système</h3>
+          <p>Rassemblez les informations utiles sur Windows, le matériel, les pilotes et les événements dans un rapport lisible.</p>
+          <div class="tag-row"><span>PowerShell</span><span>Diagnostic</span></div>
+          <span class="muted">À venir</span>
+        </article>
+        <article class="tool-card">
+          <div class="card-top"><span class="tool-icon">⌁</span><span class="pill">Prévu</span></div>
+          <h3>Diagnostic réseau</h3>
+          <p>Vérifiez la configuration IP, l’accès à la passerelle, la résolution DNS et la connectivité.</p>
+          <div class="tag-row"><span>PowerShell</span><span>Réseau</span></div>
+          <span class="muted">À venir</span>
+        </article>
+        <article class="tool-card">
+          <div class="card-top"><span class="tool-icon">↻</span><span class="pill">Prévu</span></div>
+          <h3>Réparation de Windows Update</h3>
+          <p>Identifiez les problèmes courants de Windows Update et suivez des étapes de réparation confirmées.</p>
+          <div class="tag-row"><span>PowerShell</span><span>Réparation guidée</span></div>
+          <span class="muted">À venir</span>
+        </article>
+        <article class="tool-card">
+          <div class="card-top"><span class="tool-icon">☑</span><span class="pill">Prévu</span></div>
+          <h3>Liste de vérification Windows</h3>
+          <p>Une liste pratique pour les mises à jour, les pilotes, la sécurité, les sauvegardes et les réglages après installation.</p>
+          <div class="tag-row"><span>Liste de vérification</span><span>Windows 10 / 11</span></div>
+          <span class="muted">À venir</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="principles" id="principles">
+      <div class="eyebrow">LA CONFIANCE AVANT TOUT</div>
+      <h2>Comprenez ce que fait un outil<br>avant de le lancer.</h2>
+      <div class="principle-grid">
+        <div><span class="principle-number">01</span><h3>Un code accessible</h3><p>Les scripts sont publiés sur GitHub : vous pouvez consulter leur code avant de les exécuter.</p></div>
+        <div><span class="principle-number">02</span><h3>Aucun nettoyage silencieux</h3><p>Les outils de diagnostic évitent les modifications destructrices. Les réparations sont documentées et explicites.</p></div>
+        <div><span class="principle-number">03</span><h3>Vos données restent privées</h3><p>Les informations recueillies restent sur votre ordinateur, sauf indication contraire explicite.</p></div>
+      </div>
+    </section>
+    <section class="support" aria-labelledby="support-title">
+      <div><div class="eyebrow">UN PROJET INDÉPENDANT</div><h2 id="support-title">Un petit soutien, si le cœur vous en dit.</h2><p>WinFix Kit est gratuit et open source. Si un outil vous a été utile, vous pouvez m’offrir un café pour soutenir son développement.</p><p class="support-note">Aucune obligation : utiliser le projet ou signaler un problème est déjà une aide précieuse.</p></div>
+      <a class="button button-secondary" href="https://buymeacoffee.com/drakken">☕ M’offrir un café</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="./"><span class="brand-mark">W</span><span>WinFix <strong>Kit</strong></span></a>
+    <p>Des utilitaires Windows gratuits et open source.</p>
+    <span>© <span id="year">2026</span> WinFix Kit · <a href="https://github.com/DrakkenWorld/winfix-kit-site/blob/main/LICENSE">Code du projet sous licence MIT</a></span>
+  </footer>
+</body>
+</html>

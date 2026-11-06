@@ -74,3 +74,10 @@ h2 { margin: 8px 0 0; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -.055
   .principle-grid { grid-template-columns: 1fr; gap: 22px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+.language-switch { display: inline-flex; gap: 9px; align-items: center; font-size: .84rem; }
+.language-switch [aria-current="page"] { color: var(--text); font-weight: 700; }
+.usage-label { margin-bottom: 6px !important; font-size: .82rem !important; }
+.usage { width: 100%; margin: 0 0 20px; padding: 12px; background: #0b1020; border: 1px solid var(--border); border-radius: 8px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: .78rem; }
+.support h2 { font-size: clamp(1.4rem, 2.5vw, 1.8rem); }
+.support .support-note { font-size: .85rem; }
+.support > .button { flex-shrink: 0; }
