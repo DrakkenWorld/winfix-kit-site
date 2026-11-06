@@ -1,23 +1,19 @@
 # WinFix Kit website
 
-Dark, responsive static landing page for **WinFix Kit**. The website is written in English and can be hosted on GitHub Pages.
+Static, responsive English landing page for WinFix Kit. No external runtime, analytics, cookies or build dependencies.
 
-## Publish with GitHub Pages
+Published URL: https://drakkenworld.github.io/winfix-kit-site/
 
-1. Create a public repository named `winfix-kit-site` under [DrakkenWorld](https://github.com/DrakkenWorld).
-2. Upload the contents of this folder to the repository root (so `index.html` is at the root).
-3. In **Settings → Pages**, select **Deploy from a branch**, branch `main`, folder `/ (root)`, then save.
-4. Wait for the Pages deployment. The expected URL is `https://drakkenworld.github.io/winfix-kit-site/` if the repository name remains `winfix-kit-site`.
-5. Update repository links if you choose different repository names.
+## Validation and deployment
 
-## Before public launch
+Run `node tests/check-site.mjs` (Node.js 20 or newer) to check local assets, fragment links, metadata, release link and license. This does not test remote HTTP links or visual layout.
 
-- Confirm the repository names and the GitHub Pages URL.
-- Add real screenshots from tested tool runs.
-- Replace the placeholder for Buy Me a Coffee after creating the profile.
-- Review all links and test mobile layout.
-- Consider adding a privacy/security page and a changelog.
+GitHub Actions validates every push and pull request. Pushes to `main` deploy only `index.html`, assets, robots.txt, sitemap.xml, LICENSE and .nojekyll. Repository metadata and tests are not published. All asset URLs are relative so the project subpath works.
 
-## License
+The repository's **Settings → Pages → Build and deployment → Source** must be **GitHub Actions**. The `github-pages` environment must allow `main`. The workflow needs `pages: write` and `id-token: write` only in the deployment job. After changing the Pages source, rerun the workflow from Actions if needed. A green deployment and a reachable public URL are required to confirm publication; source changes alone are not deployment evidence.
 
-Website source code is MIT-licensed; see `LICENSE`.
+## Content
+
+Disk Space Analyzer links to its stable GitHub Release and source. Other utilities are explicitly planned. Update the version badge when releasing a new analyzer version. There are no donation or account placeholders to configure.
+
+Website code: [MIT license](LICENSE).
