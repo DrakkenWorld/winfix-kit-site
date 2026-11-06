@@ -52,6 +52,12 @@ h2 { margin: 8px 0 0; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -.055
 .tool-card h3 { margin: 22px 0 6px; font-size: 1.22rem; letter-spacing: -.025em; }
 .tool-card p { margin: 0 0 18px; color: var(--muted); font-size: .93rem; }
 .tool-card > .button + p { margin-top: 18px; }
+.tool-card > .button { max-width: 100%; text-align: center; padding-top: 10px; padding-bottom: 10px; }
+.tool-card .download-note { font-size: .8rem; }
+.advanced-download { width: 100%; margin: 0 0 20px; }
+.advanced-download summary { cursor: pointer; color: var(--muted); font-size: .85rem; padding: 8px 0; }
+.advanced-download summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.advanced-download p { margin-top: 10px; }
 .tag-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; margin-bottom: 18px; }
 .tag-row span { padding: 4px 8px; border-radius: 7px; background: #1a263b; color: #c0cce2; font-size: .72rem; }
 .text-link { color: var(--accent); font-weight: 700; font-size: .9rem; }
