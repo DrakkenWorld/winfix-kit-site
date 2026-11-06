@@ -1,6 +1,6 @@
 # WinFix Kit website
 
-Static, responsive English landing page for WinFix Kit. No external runtime, analytics, cookies or build dependencies.
+Static, responsive English and French landing pages for WinFix Kit. No external runtime, analytics, cookies or build dependencies.
 
 Published URL: https://drakkenworld.github.io/winfix-kit-site/
 
