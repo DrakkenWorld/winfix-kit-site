@@ -2,41 +2,60 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve, dirname, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-for (const page of ['index.html', 'fr/index.html']) {
-const html = readFileSync(resolve(root, page), 'utf8');
-const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
-assert.equal(ids.length, new Set(ids).size, 'Unique fragment IDs');
-for (const [, url] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
-  if (url.startsWith('#')) { assert(ids.includes(url.slice(1)), `Fragment ${url}`); continue; }
-  if (/^https:\/\//.test(url)) { new URL(url); assert(!/placeholder|YOUR_USERNAME/.test(url)); continue; }
-  assert(!url.startsWith('/'), `Project Pages requires relative asset URL: ${url}`);
-  const path = resolve(dirname(resolve(root, page)), url.split(/[?#]/)[0]);
-  assert(path === root || path.startsWith(root + sep), 'Local target stays in site');
-  assert(existsSync(path), `Local target exists: ${url}`);
+const pages = [
+  'index.html', 'fr/index.html',
+  'disk-space-analyzer/index.html', 'fr/analyseur-disque/index.html',
+  'system-health-report/index.html', 'fr/rapport-sante/index.html',
+];
+const site = 'https://drakkenworld.github.io/winfix-kit-site/';
+const sitemap = readFileSync(resolve(root, 'sitemap.xml'), 'utf8');
+
+for (const page of pages) {
+  const html = readFileSync(resolve(root, page), 'utf8');
+  const fr = page.startsWith('fr/');
+  const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+  assert.equal(ids.length, new Set(ids).size, `${page}: unique IDs`);
+  assert(html.includes(`<html lang="${fr ? 'fr' : 'en'}">`));
+  assert(html.includes('name="viewport"'));
+  assert(html.includes('hreflang="en"') && html.includes('hreflang="fr"'));
+  const canonical = site + page.replace(/index\.html$/, '');
+  assert(html.includes(`rel="canonical" href="${canonical}"`));
+  assert(sitemap.includes(`<loc>${canonical}</loc>`));
+  for (const [, url] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
+    if (url.startsWith('https://')) { new URL(url); continue; }
+    assert(!url.startsWith('/'), `Project Pages needs a relative URL: ${url}`);
+    const [local, fragment] = url.split('#');
+    let target = local ? resolve(dirname(resolve(root, page)), local) : resolve(root, page);
+    if (local.endsWith('/')) target = resolve(target, 'index.html');
+    assert(target.startsWith(root + sep), `Target stays in the site: ${url}`);
+    assert(existsSync(target), `Missing local target on ${page}: ${url}`);
+    if (fragment) assert(readFileSync(target, 'utf8').includes(`id="${fragment}"`), `Missing fragment: ${url}`);
+  }
+
+  if (page === 'index.html' || page === 'fr/index.html') {
+    const hero = html.indexOf('id="winfix-kit"');
+    const tools = html.indexOf('id="tools"');
+    assert(hero >= 0 && tools > hero && html.indexOf('buymeacoffee.com') > tools, 'Lead with WinFix Kit and then standalone tools');
+    assert.equal([...html.matchAll(/href="https:\/\/buymeacoffee.com\/drakken"/g)].length, 1);
+    assert(html.includes(fr ? 'Publication en préparation' : 'Release in preparation'));
+    assert(!html.includes('/winfix-kit/releases/'), 'No unverified unified-app download link');
+    assert(html.includes(fr ? 'Aucune obligation' : 'No obligation'));
+    assert(html.includes(`winfix-home-${fr ? 'fr' : 'en'}.png`));
+    assert(!/<script[^>]+src="https?:\/\//.test(html));
+  } else {
+    const download = html.indexOf('.exe');
+    const advanced = html.indexOf('class="advanced-download"');
+    assert(download >= 0 && advanced > download, 'Windows app before PowerShell');
+    assert(html.includes('href="../#winfix-kit"'));
+    if (page.includes('health') || page.includes('sante'))
+      assert(html.includes(fr ? 'Créer le rapport' : 'Create report'));
+    else
+      assert(html.includes(`-Language ${fr ? 'fr' : 'en'}</code>`));
+  }
 }
-assert(html.includes('releases/latest'), 'Stable release download');
-const healthExe = html.indexOf('winfix-system-health-report/releases/download/v1.1.0/WinFix-SystemHealthReport-Windows-x64.exe');
-const healthZip = html.indexOf('winfix-system-health-report/releases/download/v1.1.0/WinFix-SystemHealthReport-v1.1.0.zip');
-assert(healthExe >= 0 && healthZip > healthExe, 'System Health Report EXE before advanced PowerShell ZIP');
-assert(html.includes(page.startsWith('fr/') ? 'Créer le rapport' : 'Create report'), 'Localized application instructions');
-assert(!html.includes('Starter release'), 'No obsolete release badge');
-assert(html.includes('name="viewport"'), 'Responsive viewport');
-assert(html.includes('rel="canonical"'), 'Canonical Pages URL');
-assert.equal([...html.matchAll(/href="https:\/\/buymeacoffee.com\/drakken"/g)].length, 1, 'One voluntary support link per page');
-assert(html.indexOf('buymeacoffee.com') < html.indexOf('class="hero"'), 'Support is visible above the hero');
-assert(!/<script[^>]+src="https?:\/\//.test(html), 'No third-party donation widget');
-assert(html.includes('hreflang="en"') && html.includes('hreflang="fr"'), 'Both language alternatives');
-if (page.startsWith('fr/')) {
-  assert(html.includes('<html lang="fr">'));
-  assert(html.includes('Aucune obligation') && html.includes('M’offrir un café'));
-  assert(html.includes('-Language fr</code>'));
-  assert(!html.includes('Coming later') && !html.includes('Download stable release'));
-} else {
-  assert(html.includes('<html lang="en">'));
-  assert(html.includes('No obligation') && html.includes('Buy me a coffee'));
-}
-}
+
 assert(existsSync(resolve(root, '.nojekyll')));
 assert(readFileSync(resolve(root, 'LICENSE'), 'utf8').includes('IN NO EVENT SHALL'));
-console.log('PASS: both languages, assets, fragments, release links, voluntary support, metadata and license');
+console.log('PASS: six bilingual pages, relative links, fragments, screenshots, publication status and standalone downloads');
