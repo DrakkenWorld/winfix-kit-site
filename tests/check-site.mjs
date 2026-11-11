@@ -34,14 +34,17 @@ for (const page of pages) {
     if (fragment) assert(readFileSync(target, 'utf8').includes(`id="${fragment}"`), `Missing fragment: ${url}`);
   }
 
+  const support = [...html.matchAll(/href="https:\/\/buymeacoffee.com\/drakken"/g)];
+  assert.equal(support.length, 1, 'One support link per page');
+  assert(support[0].index < html.indexOf('</header>'), 'Support link in the header');
+  assert(html.includes('winfix-logo.png'), 'Shared project logo');
+
   if (page === 'index.html' || page === 'fr/index.html') {
     const hero = html.indexOf('id="winfix-kit"');
     const tools = html.indexOf('id="tools"');
-    assert(hero >= 0 && tools > hero && html.indexOf('buymeacoffee.com') > tools, 'Lead with WinFix Kit and then standalone tools');
-    assert.equal([...html.matchAll(/href="https:\/\/buymeacoffee.com\/drakken"/g)].length, 1);
+    assert(hero >= 0 && tools > hero, 'Lead with WinFix Kit and then standalone tools');
     assert(html.includes(fr ? 'Publication en préparation' : 'Release in preparation'));
     assert(!html.includes('/winfix-kit/releases/'), 'No unverified unified-app download link');
-    assert(html.includes(fr ? 'Aucune obligation' : 'No obligation'));
     assert(html.includes(`winfix-home-${fr ? 'fr' : 'en'}.png`));
     assert(!/<script[^>]+src="https?:\/\//.test(html));
   } else {
