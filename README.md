@@ -14,7 +14,7 @@ The repository's **Settings → Pages → Build and deployment → Source** must
 
 ## Content
 
-Disk Space Analyzer links to its stable GitHub Release and source. Other utilities are explicitly planned. Update the version badge when releasing a new analyzer version. There are no donation or account placeholders to configure.
+Disk Space Analyzer and System Health Report link to their GitHub downloads and guides. Update the version badges when publishing a new version. The remaining utilities are listed as planned.
 
 Website code: [MIT license](LICENSE).
 
@@ -22,4 +22,4 @@ Website code: [MIT license](LICENSE).
 
 English is at `/winfix-kit-site/` and French at `/winfix-kit-site/fr/`. A visible language selector works without JavaScript, cookies or automatic redirects. Both pages have canonical and hreflang metadata and appear in the sitemap. The deployment stages the French directory too.
 
-Buy Me a Coffee is a single secondary link at the bottom of each page, pointing to https://buymeacoffee.com/drakken. There are no third-party widgets, popups or repeated prompts, and downloads remain directly accessible. The text explicitly says support is optional.
+Buy Me a Coffee appears in a compact support block above the hero on each page. Its single button links to https://buymeacoffee.com/drakken. The text presents support as optional.

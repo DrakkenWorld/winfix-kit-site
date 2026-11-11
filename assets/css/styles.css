@@ -68,9 +68,12 @@ h2 { margin: 8px 0 0; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -.055
 .principle-number { color: var(--accent); font-size: .8rem; font-weight: 800; }
 .principle-grid h3 { margin: 12px 0 5px; }
 .principle-grid p, .support p { color: var(--muted); }
-.support { max-width: 1160px; margin: auto; padding: 78px 28px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+.support { max-width: 1104px; margin: 18px auto 0; padding: 16px 22px; display: flex; align-items: center; justify-content: space-between; gap: 18px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
 .support > div { max-width: 670px; }
-.support h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
+.support h2 { margin: 0 0 4px; font-size: 1.12rem; }
+.support p { margin: 0; font-size: .9rem; }
+.support .support-note { margin-top: 4px; }
+.support + .hero { padding-top: 64px; }
 .site-footer { border-top: 1px solid rgba(255,255,255,.07); color: var(--muted); font-size: .8rem; flex-wrap: wrap; }
 .site-footer p { margin: 0; }
 @media (max-width: 760px) {
@@ -78,6 +81,8 @@ h2 { margin: 8px 0 0; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -.055
   nav { gap: 18px; flex-wrap: wrap; }
   .hero { padding-top: 74px; }
   .section-heading, .support { align-items: flex-start; flex-direction: column; }
+  .support { padding: 14px 16px; gap: 12px; }
+  .support + .hero { padding-top: 46px; }
   .tool-card, .tool-card.featured { grid-column: span 6; }
   .principle-grid { grid-template-columns: 1fr; gap: 22px; }
 }
@@ -86,6 +91,6 @@ h2 { margin: 8px 0 0; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -.055
 .language-switch [aria-current="page"] { color: var(--text); font-weight: 700; }
 .usage-label { margin-bottom: 6px !important; font-size: .82rem !important; }
 .usage { width: 100%; margin: 0 0 20px; padding: 12px; background: #0b1020; border: 1px solid var(--border); border-radius: 8px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: .78rem; }
-.support h2 { font-size: clamp(1.4rem, 2.5vw, 1.8rem); }
+.support { width: calc(100% - 56px); }
 .support .support-note { font-size: .85rem; }
 .support > .button { flex-shrink: 0; }
