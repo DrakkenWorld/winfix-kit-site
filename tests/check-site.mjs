@@ -35,11 +35,13 @@ for (const page of pages) {
   }
 
   const support = [...html.matchAll(/href="https:\/\/buymeacoffee.com\/drakken"/g)];
-  assert.equal(support.length, 1, 'One support link per page');
+  const home = page === 'index.html' || page === 'fr/index.html';
+  assert.equal(support.length, home ? 2 : 1, 'A header link and a banner on home pages');
   assert(support[0].index < html.indexOf('</header>'), 'Support link in the header');
   assert(html.includes('winfix-logo.png'), 'Shared project logo');
 
-  if (page === 'index.html' || page === 'fr/index.html') {
+  if (home) {
+    assert(support[1].index > html.indexOf('id="principles"') && support[1].index < html.indexOf('</main>'), 'Support banner at the bottom');
     const hero = html.indexOf('id="winfix-kit"');
     const tools = html.indexOf('id="tools"');
     assert(hero >= 0 && tools > hero, 'Lead with WinFix Kit and then standalone tools');
