@@ -16,11 +16,13 @@ for (const [, url] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
   assert(existsSync(path), `Local target exists: ${url}`);
 }
 assert(html.includes('releases/latest'), 'Stable release download');
+assert(html.includes('winfix-system-health-report/releases/download/v1.0.0/WinFix-SystemHealthReport-v1.0.0.zip'), 'System Health Report ZIP');
+assert(html.includes(page.startsWith('fr/') ? 'Start-FR.cmd' : 'Start-EN.cmd'), 'Localized launcher');
 assert(!html.includes('Starter release'), 'No obsolete release badge');
 assert(html.includes('name="viewport"'), 'Responsive viewport');
 assert(html.includes('rel="canonical"'), 'Canonical Pages URL');
 assert.equal([...html.matchAll(/href="https:\/\/buymeacoffee.com\/drakken"/g)].length, 1, 'One voluntary support link per page');
-assert(html.indexOf('buymeacoffee.com') > html.indexOf('id="principles"'), 'Support after useful content');
+assert(html.indexOf('buymeacoffee.com') < html.indexOf('class="hero"'), 'Support is visible above the hero');
 assert(!/<script[^>]+src="https?:\/\//.test(html), 'No third-party donation widget');
 assert(html.includes('hreflang="en"') && html.includes('hreflang="fr"'), 'Both language alternatives');
 if (page.startsWith('fr/')) {
