@@ -110,3 +110,5 @@ h2 { margin: 8px 0 0; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -.055
 .support h2 { margin: 0 0 4px; font-size: 1.12rem; }
 .support p { margin: 0; font-size: .9rem; color: var(--muted); }
 .support .support-note { margin-top: 4px; font-size: .85rem; }
+
+.release-actions { align-items: center; margin-top: 16px; }
