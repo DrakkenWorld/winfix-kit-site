@@ -2,4 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://drakkenworld.github.io/winfix-kit-site/</loc></url>
   <url><loc>https://drakkenworld.github.io/winfix-kit-site/fr/</loc></url>
+  <url><loc>https://drakkenworld.github.io/winfix-kit-site/disk-space-analyzer/</loc></url>
+  <url><loc>https://drakkenworld.github.io/winfix-kit-site/system-health-report/</loc></url>
+  <url><loc>https://drakkenworld.github.io/winfix-kit-site/fr/analyseur-disque/</loc></url>
+  <url><loc>https://drakkenworld.github.io/winfix-kit-site/fr/rapport-sante/</loc></url>
 </urlset>

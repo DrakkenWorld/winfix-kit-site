@@ -21,9 +21,13 @@ jobs:
           mkdir _site
           cp index.html robots.txt sitemap.xml LICENSE .nojekyll _site/
           cp -R assets _site/assets
-          cp -R fr _site/fr
+          cp -R fr disk-space-analyzer system-health-report _site/
           test -s _site/index.html
           test -s _site/fr/index.html
+          test -s _site/disk-space-analyzer/index.html
+          test -s _site/system-health-report/index.html
+          test -s _site/fr/analyseur-disque/index.html
+          test -s _site/fr/rapport-sante/index.html
           test -s _site/assets/css/styles.css
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
