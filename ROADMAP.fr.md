@@ -9,7 +9,7 @@
 
 ## Ordre proposé et première étape acceptée
 
-1. **Rapport de santé système** : version 1.0.0 en lecture seule avec rapports HTML et JSON, lanceurs français et anglais et tests PowerShell 5.1 et 7. Le code, la licence MIT et les téléchargements sont regroupés dans le [dépôt dédié](https://github.com/DrakkenWorld/winfix-system-health-report).
+1. **Rapport de santé système** : version 1.1.0 en lecture seule avec application Windows portable en français et en anglais et rapports HTML et JSON. L’archive PowerShell reste disponible. Le code, la licence MIT et les téléchargements sont regroupés dans le [dépôt dédié](https://github.com/DrakkenWorld/winfix-system-health-report).
 2. **Diagnostic réseau** : préciser les destinations et délais avant réalisation. Lecture seule ; distinguer configuration locale, passerelle, DNS et accès à une destination choisie. Les échecs ICMP ne prouvent pas une absence de connexion. Aucun reset automatique.
 3. **Liste de vérification Windows** : guide versionné, sauvegardes/mises à jour/pilotes/sécurité, sans script qui applique tous les réglages. Vérifier les recommandations officielles au moment de rédiger.
 4. **Windows Update** : commencer par un diagnostic. Définir séparément les réparations, sauvegardes et confirmations avant toute modification des services, caches ou paramètres.

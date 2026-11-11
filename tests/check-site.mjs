@@ -16,8 +16,10 @@ for (const [, url] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
   assert(existsSync(path), `Local target exists: ${url}`);
 }
 assert(html.includes('releases/latest'), 'Stable release download');
-assert(html.includes('winfix-system-health-report/releases/download/v1.0.0/WinFix-SystemHealthReport-v1.0.0.zip'), 'System Health Report ZIP');
-assert(html.includes(page.startsWith('fr/') ? 'Start-FR.cmd' : 'Start-EN.cmd'), 'Localized launcher');
+const healthExe = html.indexOf('winfix-system-health-report/releases/download/v1.1.0/WinFix-SystemHealthReport-Windows-x64.exe');
+const healthZip = html.indexOf('winfix-system-health-report/releases/download/v1.1.0/WinFix-SystemHealthReport-v1.1.0.zip');
+assert(healthExe >= 0 && healthZip > healthExe, 'System Health Report EXE before advanced PowerShell ZIP');
+assert(html.includes(page.startsWith('fr/') ? 'Créer le rapport' : 'Create report'), 'Localized application instructions');
 assert(!html.includes('Starter release'), 'No obsolete release badge');
 assert(html.includes('name="viewport"'), 'Responsive viewport');
 assert(html.includes('rel="canonical"'), 'Canonical Pages URL');
