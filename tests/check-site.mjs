@@ -50,7 +50,9 @@ for (const page of pages) {
     assert(html.includes('https://github.com/DrakkenWorld/winfix-kit-site/releases/download/winfix-kit-v2.11.3/SHA256SUMS.txt'), 'Versioned checksum');
     assert(html.includes('https://github.com/DrakkenWorld/winfix-kit-site/releases/tag/winfix-kit-v2.11.3'), 'Release notes');
     assert(html.includes(fr ? '<strong>Extraire tout</strong>' : '<strong>Extract All</strong>'));
-    assert(html.includes(`winfix-home-${fr ? 'fr' : 'en'}.png`));
+    const version = html.match(/class="release-status">[^<]*?(\d+\.\d+\.\d+)<\/p>/)[1];
+    assert(html.includes(`winfix-home-${version}-${fr ? 'fr' : 'en'}.png`), 'Screenshot matches release version');
+    assert(html.match(/<figcaption>([^<]+)<\/figcaption>/)[1].includes(version), 'Screenshot caption matches release version');
     assert(!/<script[^>]+src="https?:\/\//.test(html));
   } else {
     const download = html.indexOf('.exe');
