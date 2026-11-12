@@ -45,10 +45,10 @@ for (const page of pages) {
     const hero = html.indexOf('id="winfix-kit"');
     const tools = html.indexOf('id="tools"');
     assert(hero >= 0 && tools > hero, 'Lead with WinFix Kit and then standalone tools');
-    assert(html.includes(fr ? 'Préversion publique 2.4.2' : 'Public preview 2.4.2'));
-    assert.equal(html.split('https://github.com/DrakkenWorld/winfix-kit-site/releases/download/winfix-kit-v2.4.2/WinFix-Kit-2.4.2-win-x64.zip').length - 1, 2, 'Direct download in hero and release section');
-    assert(html.includes('https://github.com/DrakkenWorld/winfix-kit-site/releases/download/winfix-kit-v2.4.2/SHA256SUMS.txt'), 'Versioned checksum');
-    assert(html.includes('https://github.com/DrakkenWorld/winfix-kit-site/releases/tag/winfix-kit-v2.4.2'), 'Release notes');
+    assert(html.includes(fr ? 'Préversion publique 2.11.3' : 'Public preview 2.11.3'));
+    assert.equal(html.split('https://github.com/DrakkenWorld/winfix-kit-site/releases/download/winfix-kit-v2.11.3/WinFix-Kit-2.11.3-win-x64.zip').length - 1, 2, 'Direct download in hero and release section');
+    assert(html.includes('https://github.com/DrakkenWorld/winfix-kit-site/releases/download/winfix-kit-v2.11.3/SHA256SUMS.txt'), 'Versioned checksum');
+    assert(html.includes('https://github.com/DrakkenWorld/winfix-kit-site/releases/tag/winfix-kit-v2.11.3'), 'Release notes');
     assert(html.includes(fr ? '<strong>Extraire tout</strong>' : '<strong>Extract All</strong>'));
     assert(html.includes(`winfix-home-${fr ? 'fr' : 'en'}.png`));
     assert(!/<script[^>]+src="https?:\/\//.test(html));
